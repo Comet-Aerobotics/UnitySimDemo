@@ -27,10 +27,22 @@ All packages not installed by default:
 
 ---------------------------------------------------------------
 
-Roles:
+Issue Coding:
 
-Environment - 
-Rover Control - 
-Stereo Camera - 
-Algorithm Implementation - 
-CAD - 
+Issue area codes:
+
+```
+Environment - 1000
+Rover Control - 2000
+Stereo Camera - 3000
+Algorithm Implementation - 4000
+CAD - 5000
+```
+
+How code works:
+
+first digit is a area of the issue. Second digit is the importance of the issue (0 - not important to 9 - urgent). Two last digits is a chronological order of the issue. 
+
+For example:
+
+`2353` - 2 is a "Rover Control" key digit, 3 is its importance, and 3 on the given scale is not as importnat. 53 means that is the 53rd issue from the same area.
