@@ -1,5 +1,5 @@
 # UnitySimDemo
-Author(s): Krishna Bhatia
+Author(s): Krishna Bhatia, Vladislav Kondratyev
 Rough draft, will make it sound nicer later
 
 First install Unity Hub.
