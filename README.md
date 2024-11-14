@@ -13,7 +13,7 @@
 1. Inside Unity Hub, go to the **Installs** tab.
 2. Install **Unity Version 2022.3.52f1**.
    - **Modules to include**:
-     - **Linux Build Support**
+     - **All Three Linux Build Support Modules**
      - **Universal Windows Platform Support** (optional, for building on Windows)
      - **WebGL Build Support** (optional, for building on the web)
 3. Click **Next** to begin the installation.
@@ -28,11 +28,22 @@
 ## Project Setup in Unity
 
 1. Open **Unity Hub** and click **Add Project**.
-2. Select the **Unity 2022.3.52f1** editor version.
+2. Select the **Unity 2022.3.52f1** editor version, which will show at the top of your screen.
 3. Name the project as desired and choose a location on your computer.
 4. Make sure **Unity Cloud Control** is enabled (recommended).
 5. For **Template**, select **Universal 3D** to ensure compatibility.
 6. Click **Create** to initialize the project.
+
+---
+
+## Installing Required Unity Packages
+
+1. Open the **Package Manager**: Go to **Window** > **Package Manager**.
+2. Search for and install:
+    - **Cinemachine** (used for basic camera control).  
+
+---
+   > **Note**: Additional packages may be required for advanced functionality. If any prompts for missing packages appear, follow the instructions to install them.
 
 ---
 
@@ -41,18 +52,7 @@
 1. In Unity, go to the **Assets** menu.
 2. Select **Import Package** > **Custom Package**.
 3. Locate and select the `.unitypackage` file included with this project.
-4. In the Import Unity Package window, make sure all items are checked, then click **Import**.
-
----
-
-## Installing Required Unity Packages
-
-1. Open the **Package Manager**: Go to **Window** > **Package Manager**.
-2. Search for and install:
-    - **Cinemachine** (used for camera control).  
-
----
-   > **Note**: Additional packages may be required for advanced functionality. If any prompts for missing packages appear, follow the instructions to install them.
+4. In the Import Unity Package window, make sure all items available are checked, then click **Import**.
 
 ---
 
