@@ -27,32 +27,20 @@
 
 ## Project Setup in Unity
 
-1. Open **Unity Hub** and click **Add Project**.
-2. Select the **Unity 2022.3.52f1** editor version, which will show at the top of your screen.
-3. Name the project as desired and choose a location on your computer.
-4. Make sure **Unity Cloud Control** is enabled (recommended).
-5. For **Template**, select **Universal 3D** to ensure compatibility.
-6. Click **Create** to initialize the project.
+1. Open **Unity Hub** and click **Add**, the button with the dropdown arrow.
+2. Select **Add project from disk** and then select the file folder containing this project.
+3. The project should start compiling and Unity should open! Ensure you are using the correct version installed earlier, **Unity Version 2022.3.52f1**.
 
 ---
 
 ## Installing Required Unity Packages
 
 1. Open the **Package Manager**: Go to **Window** > **Package Manager**.
-2. Search for and install:
+2. Search for and install if they are not already installed:
     - **Cinemachine** (used for basic camera control).  
 
 ---
    > **Note**: Additional packages may be required for advanced functionality. If any prompts for missing packages appear, follow the instructions to install them.
-
----
-
-### Import UnitySimDemo Assets
-
-1. In Unity, go to the **Assets** menu.
-2. Select **Import Package** > **Custom Package**.
-3. Locate and select the `.unitypackage` file included with this project.
-4. In the Import Unity Package window, make sure all items available are checked, then click **Import**.
 
 ---
 
