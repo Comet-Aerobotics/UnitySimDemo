@@ -77,3 +77,17 @@ Each issue or code change should be labeled according to the following structure
 Use these codes in comments and commit messages to keep the project organized and to make it easy to understand issue importance at a glance.
 
 ---
+## Integrating ROS2 on Unity: 
+
+1. Open the **Package Manager** on **Unity**: Go to **Window** < **Package Manager**.
+2. Click on the **+** on the top-left.
+3. Click on **Add package from git URL**.
+4. Add the first git-link: https://github.com/Unity-Technologies/ROS-TCP-Connector.git?path=/com.unity.robotics.ros-tcp-connector (ROS-TCP-CONNECTOR)
+5. Add the second git-link: https://github.com/Unity-Technologies/ROS-TCP-Connector.git?path=/com.unity.robotics.visualizations (Robot Visualizations)      
+
+##Additional Information:
+Article on Ros2 integration on Unity: 
+https://unity.com/blog/engine-platform/advance-your-robot-autonomy-with-ros-2-and-unity
+https://github.com/Unity-Technologies/ROS-TCP-Connector
+
+---
