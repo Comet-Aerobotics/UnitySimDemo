@@ -87,7 +87,7 @@ Use these codes in comments and commit messages to keep the project organized an
 
 #### Additional Information:
 Article on Ros2 integration on Unity: 
-https://unity.com/blog/engine-platform/advance-your-robot-autonomy-with-ros-2-and-unity
-https://github.com/Unity-Technologies/ROS-TCP-Connector
+1. https://unity.com/blog/engine-platform/advance-your-robot-autonomy-with-ros-2-and-unity
+2. https://github.com/Unity-Technologies/ROS-TCP-Connector
 
 ---
