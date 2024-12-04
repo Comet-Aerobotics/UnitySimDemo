@@ -69,7 +69,7 @@ public struct HeightMapGenerator : IJobParallelFor {
         float y = threadIndex % (_meshVariables.terrainMeshDetail+1);
         float2 pos = new float2(x, y);
 
-        float h = Mathf.Clamp((OctavedSimplexNoise(pos) + OctavedRidgeNoise(pos))/2f * FalloffMap(pos) * _meshVariables.height, _heightmapVariables.waterLevel, 1000);
+        float h = Mathf.Clamp((OctavedSimplexNoise(pos) + OctavedRidgeNoise(pos))/2f * FalloffMap(pos) * _meshVariables.height, _heightmapVariables.waterLevel, 10000);
 
         _heightMap[threadIndex] = h / _meshVariables.TileEdgeLength;
         _colMap[threadIndex] = _gradient[Mathf.Clamp(Mathf.RoundToInt(h), 0, 99)];
@@ -208,12 +208,15 @@ public struct TerrainMeshVariables
 public struct TerrainHeightmapVariables
 {
     [Header("Noise")]
+    [Range(0, 5)]
     public float noiseScale;
     [Range(0, 4)]
     public float frequency, lacunarity;
     [Range(1, 10)]
     public int octaves;
+    [Range(0, 10)]
     public float weight;
+    [Range(0, 10)]
 
     public float falloffSteepness, falloffOffset;
     [Header("Extras")] 
