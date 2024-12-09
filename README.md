@@ -38,6 +38,9 @@
 1. Open the **Package Manager**: Go to **Window** > **Package Manager**.
 2. Search for and install if they are not already installed:
     - **Cinemachine** (used for basic camera control).  
+    - **Burst** (terrain gen requirement)
+    - **Unity glTFast** (importing the robot model)
+    - **Draco for Unity** (dependency for glTFast)
 
 ---
    > **Note**: Additional packages may be required for advanced functionality. If any prompts for missing packages appear, follow the instructions to install them.
