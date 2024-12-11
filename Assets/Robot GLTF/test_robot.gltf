@@ -71356,20 +71356,20 @@
 			{
 				"sampler": 0,
 				"source": 0,
-				"name": "n_satinwood_n.dds"
+				"name": "n_satinwood_n.jpg"
 			},
 			{
 				"sampler": 1,
 				"source": 1,
-				"name": "n_PlasticPolystyrene_normalmap.dds"
+				"name": "n_PlasticPolystyrene_normalmap.jpg"
 			}
 	],
 	"images": [
 			{
-				"uri": "n_satinwood_n.dds"
+				"uri": "n_satinwood_n.jpg"
 			},
 			{
-				"uri": "n_PlasticPolystyrene_normalmap.dds"
+				"uri": "n_PlasticPolystyrene_normalmap.jpg"
 			}
 	],
 	"samplers": [

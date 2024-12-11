@@ -24,10 +24,18 @@ ScriptedImporter:
     skinUpdateWhenOffscreen: 1
     lightIntensityFactor: 1
     sceneObjectCreation: 2
-  assetDependencies: []
-  reportItems:
+  assetDependencies:
   - type: 0
-    code: 37
+    originalUri: Assets\Robot GLTF\data.bin
+    assetPath: Assets\Robot GLTF\data.bin
+  - type: 1
+    originalUri: Assets\Robot GLTF\n_satinwood_n.png
+    assetPath: Assets\Robot GLTF\n_satinwood_n.png
+  - type: 1
+    originalUri: Assets\Robot GLTF\n_PlasticPolystyrene_normalmap.png
+    assetPath: Assets\Robot GLTF\n_PlasticPolystyrene_normalmap.png
+  reportItems:
+  - type: 2
+    code: 20
     messages:
-    - Draco for Unity
-    - KHR_draco_mesh_compression
+    - Solidworks_custom_properties
