@@ -6,6 +6,7 @@ public class Movement : MonoBehaviour
 {
     Rigidbody rb;
     public float moveSpeed;
+    public float turnSpeed;
     void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -14,9 +15,15 @@ public class Movement : MonoBehaviour
 
     void FixedUpdate()
     {
-        float xDir = rb.velocity.x;
-        float zDir = Input.GetAxis("Vertical") * moveSpeed * Time.deltaTime;
-        if(zDir == 0) xDir = Input.GetAxis("Horizontal") * moveSpeed * Time.deltaTime; else xDir = rb.velocity.x;
-        rb.velocity = new Vector3(xDir, rb.velocity.y, zDir);
+        float move = Input.GetAxis("Vertical") * moveSpeed * Time.fixedDeltaTime;
+        // float xDir = Input.GetAxis("Horizontal") * moveSpeed * Time.fixedDeltaTime;
+        transform.Translate(transform.forward * move * Time.fixedDeltaTime, Space.World);
+
+
+        // rotation stuff (play with this later when u code tank drive)
+        float rotation = Input.GetAxis("Horizontal") * turnSpeed * Time.fixedDeltaTime;
+        Vector3 m_EulerAngleVelocity = new Vector3(0, rotation, 0);
+        Quaternion deltaRotation = Quaternion.Euler(m_EulerAngleVelocity);
+        rb.MoveRotation(rb.rotation * deltaRotation);
     }
 }
