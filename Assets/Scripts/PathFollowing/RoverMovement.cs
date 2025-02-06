@@ -14,6 +14,7 @@ public class RoverMovement : MonoBehaviour
 
     void Start()
     {
+        Cursor.lockState = CursorLockMode.Locked;
         Node startNode = pathfinding.gridManager.GetNode(Mathf.RoundToInt(start.position.x), Mathf.RoundToInt(start.position.z));
         Node targetNode = pathfinding.gridManager.GetNode(Mathf.RoundToInt(target.position.x), Mathf.RoundToInt(target.position.z));
 

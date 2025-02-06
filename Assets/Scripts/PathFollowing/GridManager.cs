@@ -4,47 +4,69 @@ using UnityEngine;
 
 public class GridManager : MonoBehaviour
 {
-    public int gridWidth = 20;
-    public int gridHeight = 20;
     public float cellSize = 1f;
     public GameObject obstaclePrefab;
+    public GameObject bounds1;
+    public GameObject bounds2;
+    public int obstacleCount = 10;
+
+    [HideInInspector]
+    public float bounds1X;
+    [HideInInspector]
+    public float bounds1Z;
+    [HideInInspector]
+    public float bounds2X;
+    [HideInInspector]
+    public float bounds2Z;
+    [HideInInspector]
+    public float gridWidth;
+    [HideInInspector]
+    public float gridHeight;
+    
 
     private Node[,] grid;
 
     // Start is called before the first frame update
     void Start()
     {
+        bounds1X = bounds1.transform.position.x;
+        bounds1Z = bounds1.transform.position.z;
+        bounds2X = bounds2.transform.position.x;
+        bounds2Z = bounds2.transform.position.z;
+        gridWidth = (bounds2X - bounds1X);
+        gridHeight = (bounds2Z - bounds1Z);
         GenerateGrid();
         PlaceObstacles();
     }
 
     void GenerateGrid()
     {
-        grid = new Node[gridWidth, gridHeight];
-        for (int x = 0; x < gridWidth; x++)
+        grid = new Node[(int) gridWidth, (int) gridHeight];
+        for (int x = 0; x < (int) gridWidth; x++)
         {
-            for (int y = 0; y < gridHeight; y++)
+            for (int z = 0; z < (int) gridHeight; z++)
             {
-                grid[x, y] = new Node(x, y, true);
+                grid[x, z] = new Node(x, z, true);
             }
         }
     }
 
     void PlaceObstacles()
     {
-        for (int i = 0; i < 30; i++) // Random obstacles
+
+        for (int i = 0; i < obstacleCount; i++)
         {
-            int x = Random.Range(0, gridWidth);
-            int y = Random.Range(0, gridHeight);
-            grid[x, y].IsWalkable = false;
-            Instantiate(obstaclePrefab, new Vector3(x * cellSize, 0, y * cellSize), Quaternion.identity);
+            int x = (int) Random.Range(bounds1X, bounds2X);
+            int z = (int) Random.Range(bounds1Z, bounds2Z);
+            //grid[x, z].IsWalkable = false;
+            Instantiate(obstaclePrefab, new Vector3(x * cellSize, 1.668f, z * cellSize), Quaternion.identity);
         }
     }
 
-    public Node GetNode(int x, int y)
+    public Node GetNode(int x, int z)
     {
-        if (x >= 0 && y >= 0 && x < gridWidth && y < gridHeight)
-            return grid[x, y];
+        if (x >= bounds1X && z >= bounds1Z && x < bounds2X && z < bounds2Z)
+            return grid[x, z];
         return null;
     }
 }
