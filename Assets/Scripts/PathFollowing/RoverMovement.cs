@@ -11,12 +11,14 @@ public class RoverMovement : MonoBehaviour
 
     private List<Node> path;
     private int currentPathIndex;
-
-    void Start()
+    IEnumerator Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
-        Node startNode = pathfinding.gridManager.GetNode(Mathf.RoundToInt(start.position.x), Mathf.RoundToInt(start.position.z));
-        Node targetNode = pathfinding.gridManager.GetNode(Mathf.RoundToInt(target.position.x), Mathf.RoundToInt(target.position.z));
+
+        yield return new WaitForSeconds(0.1f);
+
+        Node startNode = pathfinding.gridManager.GetNode(start.position.x, start.position.z);
+        Node targetNode = pathfinding.gridManager.GetNode(target.position.x, target.position.z);
 
         path = pathfinding.FindPath(startNode, targetNode);
 
@@ -36,7 +38,7 @@ public class RoverMovement : MonoBehaviour
         while (currentPathIndex < path.Count)
         {
             Node currentNode = path[currentPathIndex];
-            Vector3 targetPosition = new Vector3(currentNode.X, 0, currentNode.Y);
+            Vector3 targetPosition = new Vector3(currentNode.X, 0, currentNode.Z);
 
             while (Vector3.Distance(transform.position, targetPosition) > 0.1f)
             {

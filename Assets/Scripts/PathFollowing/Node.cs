@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class Node
 {
-    public int X;
-    public int Y;
+    public float X;
+    public float Z;
     public bool IsWalkable;
     public Node Parent;
 
@@ -13,10 +13,10 @@ public class Node
     public float HCost;
     public float FCost => GCost + HCost;
 
-    public Node(int x, int y, bool isWalkable)
+    public Node(float x, float z, bool isWalkable)
     {
         X = x;
-        Y = y;
+        Z = z;
         IsWalkable = isWalkable;
     }
 }

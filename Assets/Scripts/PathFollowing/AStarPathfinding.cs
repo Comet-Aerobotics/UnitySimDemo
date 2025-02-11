@@ -60,26 +60,39 @@ public class AStarPathfinding : MonoBehaviour
     {
         List<Node> neighbors = new List<Node>();
 
+        int nodeX = Mathf.RoundToInt(node.X - gridManager.bounds1.position.x);
+        int nodeZ = Mathf.RoundToInt(node.Z - gridManager.bounds1.position.z);
+
         for (int x = -1; x <= 1; x++)
         {
-            for (int y = -1; y <= 1; y++)
+            for (int z = -1; z <= 1; z++)
             {
-                if (x == 0 && y == 0) continue;
+                if (x == 0 && z == 0) continue; // Skip the center node (itself)
 
-                Node neighbor = gridManager.GetNode(node.X + x, node.Y + y);
-                if (neighbor != null)
-                    neighbors.Add(neighbor);
+                int neighborX = nodeX + x;
+                int neighborZ = nodeZ + z;
+
+                // Ensure the neighbor is within grid bounds
+                if (neighborX >= gridManager.bounds1.position.x && neighborZ >= gridManager.bounds1.position.z && 
+                    neighborX < gridManager.bounds2.position.x && 
+                    neighborZ < gridManager.bounds2.position.z){
+                        Node neighbor = gridManager.GetNode(node.X + x, node.Z + z);
+                        if (neighbor != null)
+                            neighbors.Add(neighbor);
+                    }
             }
         }
 
         return neighbors;
     }
 
+    
+
     float GetDistance(Node a, Node b)
     {
-        int dstX = Mathf.Abs(a.X - b.X);
-        int dstY = Mathf.Abs(a.Y - b.Y);
-        return dstX + dstY;
+        int dstX = (int) Mathf.Abs(a.X - b.X);
+        int dstz = (int) Mathf.Abs(a.Z - b.Z);
+        return dstX + dstz;
     }
 
     List<Node> RetracePath(Node startNode, Node endNode)
