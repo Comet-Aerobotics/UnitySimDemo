@@ -34,7 +34,7 @@ public class GridManager : MonoBehaviour
             for (int z = Mathf.RoundToInt(bounds1.position.z); z < Mathf.RoundToInt(bounds2.position.z); z++)
             {
                 grid[x, z] = new Node(x, z, true);
-                Instantiate(gridSquare, new Vector3((x+0.5f) * cellSize, 0.49f, (z+0.5f) * cellSize), Quaternion.identity);
+                // Instantiate(gridSquare, new Vector3((x+0.5f) * cellSize, 0.1f, (z+0.5f) * cellSize), Quaternion.identity);
                 if (grid[x, z] == null) {
                     Debug.LogError($"Node at ({x}, {z}) is NULL!");
                 }
@@ -49,7 +49,7 @@ public class GridManager : MonoBehaviour
             int x = UnityEngine.Random.Range(Mathf.RoundToInt(bounds1.position.x), Mathf.RoundToInt(bounds2.position.x));
             int z = UnityEngine.Random.Range(Mathf.RoundToInt(bounds1.position.z), Mathf.RoundToInt(bounds2.position.z));
             //grid[x, z].IsWalkable = false;
-            Instantiate(obstaclePrefab, new Vector3(x * cellSize, 0.49f, z * cellSize), Quaternion.identity);
+            Instantiate(obstaclePrefab, new Vector3(x * cellSize, 0.1f, z * cellSize), Quaternion.identity);
         }
     }
 

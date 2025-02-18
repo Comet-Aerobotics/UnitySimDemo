@@ -10,7 +10,7 @@ public class AStarPathfinding : MonoBehaviour
     {
         List<Node> openList = new List<Node> { startNode };
         HashSet<Node> closedList = new HashSet<Node>();
-
+        
         startNode.GCost = 0;
         startNode.HCost = GetDistance(startNode, targetNode);
 

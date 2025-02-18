@@ -17,8 +17,8 @@ public class RoverMovement : MonoBehaviour
 
         yield return new WaitForSeconds(0.1f);
 
-        Node startNode = pathfinding.gridManager.GetNode(start.position.x, start.position.z);
-        Node targetNode = pathfinding.gridManager.GetNode(target.position.x, target.position.z);
+        Node startNode = pathfinding.gridManager.GetNode(Mathf.RoundToInt(start.position.x), Mathf.RoundToInt(start.position.z));
+        Node targetNode = pathfinding.gridManager.GetNode(Mathf.RoundToInt(target.position.x), Mathf.RoundToInt(target.position.z));
 
         path = pathfinding.FindPath(startNode, targetNode);
 
