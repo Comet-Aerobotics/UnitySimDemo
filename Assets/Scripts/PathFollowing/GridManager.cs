@@ -29,12 +29,12 @@ public class GridManager : MonoBehaviour
     void GenerateGrid()
     {
         grid = new Node[gridWidth, gridHeight];
-        for (int x = 0; x < gridWidth; x++)
+        for (int x = Mathf.RoundToInt(bounds1.position.x); x < Mathf.RoundToInt(bounds2.position.x); x++)
         {
-            for (int z = 0; z < gridHeight; z++)
+            for (int z = Mathf.RoundToInt(bounds1.position.z); z < Mathf.RoundToInt(bounds2.position.z); z++)
             {
                 grid[x, z] = new Node(x, z, true);
-                Instantiate(gridSquare, new Vector3(x * cellSize, 1.668f, z * cellSize), Quaternion.identity);
+                Instantiate(gridSquare, new Vector3((x+0.5f) * cellSize, 0.49f, (z+0.5f) * cellSize), Quaternion.identity);
                 if (grid[x, z] == null) {
                     Debug.LogError($"Node at ({x}, {z}) is NULL!");
                 }
@@ -49,22 +49,22 @@ public class GridManager : MonoBehaviour
             int x = UnityEngine.Random.Range(Mathf.RoundToInt(bounds1.position.x), Mathf.RoundToInt(bounds2.position.x));
             int z = UnityEngine.Random.Range(Mathf.RoundToInt(bounds1.position.z), Mathf.RoundToInt(bounds2.position.z));
             //grid[x, z].IsWalkable = false;
-            Instantiate(obstaclePrefab, new Vector3(x * cellSize, 1.668f, z * cellSize), Quaternion.identity);
+            Instantiate(obstaclePrefab, new Vector3(x * cellSize, 0.49f, z * cellSize), Quaternion.identity);
         }
     }
 
     public Node GetNode(float worldX, float worldZ)
-{
-    int x = Mathf.RoundToInt(worldX - bounds1.position.x);
-    int z = Mathf.RoundToInt(worldZ - bounds1.position.z);
-
-    if (x < bounds1.position.x || z < bounds1.position.z || x >= bounds2.position.x || z >= bounds2.position.x)
     {
-        Debug.LogError($"GetNode({x}, {z}) is out of bounds!");
-        return null;
-    }
+        int x = Mathf.RoundToInt(worldX - bounds1.position.x);
+        int z = Mathf.RoundToInt(worldZ - bounds1.position.z);
 
-    return grid[x, z];
-}
+        if (x < bounds1.position.x || z < bounds1.position.z || x >= bounds2.position.x || z >= bounds2.position.x)
+        {
+            Debug.LogError($"GetNode({x}, {z}) is out of bounds!");
+            return null;
+        }
+
+        return grid[x, z];
+    }
 
 }
