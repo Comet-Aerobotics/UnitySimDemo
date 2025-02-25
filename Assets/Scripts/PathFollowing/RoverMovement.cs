@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class RoverMovement : MonoBehaviour
@@ -7,7 +8,7 @@ public class RoverMovement : MonoBehaviour
     public AStarPathfinding pathfinding;
     public Transform start;
     public Transform target;
-    public float speed = 2f;
+    public float speed;
 
     private List<Node> path;
     private int currentPathIndex;
@@ -39,13 +40,29 @@ public class RoverMovement : MonoBehaviour
         {
             Node currentNode = path[currentPathIndex];
             Vector3 targetPosition = new Vector3(currentNode.X, 0, currentNode.Z);
+            float distance = Vector3.Distance(transform.position, targetPosition);
 
-            while (Vector3.Distance(transform.position, targetPosition) > 0.1f)
+            while (distance > 0.1f)
             {
-                transform.position = Vector3.MoveTowards(transform.position, targetPosition, speed * Time.deltaTime);
+                // Rotate to face the target node and move towards it
+                Vector3 direction = (targetPosition - transform.position).normalized;
+                Quaternion lookRotation = Quaternion.LookRotation(direction);
+                // Rotate to face the target node
+                while (Quaternion.Angle(transform.rotation, lookRotation) > 10f)
+                {
+                    transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, speed * Time.deltaTime);
+                    yield return null;
+                }
+
+                // Move towards the target node
+                while (distance > 0.1f)
+                {
+                    transform.Translate(transform.forward * speed * Time.deltaTime, Space.World);
+                    distance = Vector3.Distance(transform.position, targetPosition);
+                    yield return null;
+                }
                 yield return null;
             }
-
             currentPathIndex++;
         }
 

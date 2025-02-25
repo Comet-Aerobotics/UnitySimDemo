@@ -5,11 +5,11 @@ using UnityEngine;
 
 public class GridManager : MonoBehaviour
 {
-    public float cellSize = 1f;
+    public float cellSize = 0.1f;
     public GameObject obstaclePrefab;
     public Transform bounds1;
     public Transform bounds2;
-    public int obstacleCount = 10;
+    public int obstacleCount = 3;
     [HideInInspector]
     public int gridWidth;
     [HideInInspector]
@@ -20,8 +20,8 @@ public class GridManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        gridWidth = Mathf.RoundToInt(bounds2.position.x - bounds1.position.x);
-        gridHeight = Mathf.RoundToInt(bounds2.position.z - bounds1.position.z);
+        gridWidth = Mathf.RoundToInt((bounds2.position.x - bounds1.position.x) * cellSize);
+        gridHeight = Mathf.RoundToInt((bounds2.position.z - bounds1.position.z) * cellSize);
         GenerateGrid();
         PlaceObstacles();
     }
@@ -34,7 +34,7 @@ public class GridManager : MonoBehaviour
             for (int z = Mathf.RoundToInt(bounds1.position.z); z < Mathf.RoundToInt(bounds2.position.z); z++)
             {
                 grid[x, z] = new Node(x, z, true);
-                // Instantiate(gridSquare, new Vector3((x+0.5f) * cellSize, 0.1f, (z+0.5f) * cellSize), Quaternion.identity);
+                Instantiate(gridSquare, new Vector3((x+0.5f) * cellSize, 0.1f, (z+0.5f) * cellSize), Quaternion.identity);
                 if (grid[x, z] == null) {
                     Debug.LogError($"Node at ({x}, {z}) is NULL!");
                 }
@@ -48,7 +48,7 @@ public class GridManager : MonoBehaviour
         {
             int x = UnityEngine.Random.Range(Mathf.RoundToInt(bounds1.position.x), Mathf.RoundToInt(bounds2.position.x));
             int z = UnityEngine.Random.Range(Mathf.RoundToInt(bounds1.position.z), Mathf.RoundToInt(bounds2.position.z));
-            //grid[x, z].IsWalkable = false;
+            // grid[x, z].IsWalkable = false;
             Instantiate(obstaclePrefab, new Vector3(x * cellSize, 0.1f, z * cellSize), Quaternion.identity);
         }
     }
