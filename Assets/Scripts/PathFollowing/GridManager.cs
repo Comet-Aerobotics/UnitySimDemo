@@ -1,17 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using Unity.Mathematics;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class GridManager : MonoBehaviour
 {
-    public float cellSize = 0.1f;
+    public float cellSize;
     public GameObject obstaclePrefab;
     public Transform bounds1;
     public Transform bounds2;
     public Transform startNode;
     public Transform targetNode;
-    public int obstacleCount = 3;
+    public int obstacleCount;
     [HideInInspector]
     public int gridWidth;
     [HideInInspector]
@@ -22,21 +23,23 @@ public class GridManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        gridWidth = Mathf.RoundToInt((bounds2.position.x - bounds1.position.x) * cellSize);
-        gridHeight = Mathf.RoundToInt((bounds2.position.z - bounds1.position.z) * cellSize);
+        gridWidth = Mathf.RoundToInt((bounds2.position.x - bounds1.position.x)/cellSize);
+        gridHeight = Mathf.RoundToInt((bounds2.position.z - bounds1.position.z)/cellSize);
         GenerateGrid();
-        PlaceObstacles(GetNode(startNode.position.x, startNode.position.z), GetNode(targetNode.position.x, targetNode.position.z));
+        PlaceObstacles();
     }
 
     void GenerateGrid()
     {
         grid = new Node[gridWidth, gridHeight];
+        gridSquare.transform.localScale = new Vector3(cellSize, 0.00001f, cellSize);
+        gridSquare.GetComponent<Collider>().enabled = false;
         for (int x = Mathf.RoundToInt(bounds1.position.x); x < Mathf.RoundToInt(bounds2.position.x); x++)
         {
             for (int z = Mathf.RoundToInt(bounds1.position.z); z < Mathf.RoundToInt(bounds2.position.z); z++)
             {
                 grid[x, z] = new Node(x, z, true);
-                // Instantiate(gridSquare, new Vector3((x+0.5f) * cellSize, 0.1f, (z+0.5f) * cellSize), Quaternion.identity);
+                Instantiate(gridSquare, new Vector3(x + cellSize/2, 0.1f, z + cellSize/2), Quaternion.identity);
                 if (grid[x, z] == null) {
                     Debug.LogError($"Node at ({x}, {z}) is NULL!");
                 }
@@ -44,19 +47,19 @@ public class GridManager : MonoBehaviour
         }
     }
 
-    void PlaceObstacles(Node startNode, Node targetNode)
+    void PlaceObstacles()
     {
         for (int i = 0; i < obstacleCount; i++)
         {
             int x = UnityEngine.Random.Range(Mathf.RoundToInt(bounds1.position.x), Mathf.RoundToInt(bounds2.position.x));
             int z = UnityEngine.Random.Range(Mathf.RoundToInt(bounds1.position.z), Mathf.RoundToInt(bounds2.position.z));
-            while((GetNode(x, z) == startNode) || (GetNode(x, z) == targetNode))
+            while(GetNode(x, z) == GetNode(startNode.position.x, startNode.position.z) || GetNode(x, z) == GetNode(targetNode.position.x, targetNode.position.z))
             {
                 x = UnityEngine.Random.Range(Mathf.RoundToInt(bounds1.position.x), Mathf.RoundToInt(bounds2.position.x));
                 z = UnityEngine.Random.Range(Mathf.RoundToInt(bounds1.position.z), Mathf.RoundToInt(bounds2.position.z));
             }
             grid[x, z].IsWalkable = false;
-            Instantiate(obstaclePrefab, new Vector3(x * cellSize, 0.1f, z * cellSize), Quaternion.identity);
+            Instantiate(obstaclePrefab, new Vector3(x + cellSize/2, 0.1f, z + cellSize/2), Quaternion.identity);
         }
     }
 
