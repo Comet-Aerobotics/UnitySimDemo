@@ -242,7 +242,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9736662}
   m_Layer: 0
-  m_Name: RobotPosition
+  m_Name: AStarStart
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -256,12 +256,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9736661}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.262, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 4.106, y: 0.14200002, z: 0.729}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 3161142658214053638}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &103436910
 GameObject:
@@ -900,7 +900,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.15993515, y: -0.000000020102833, z: 0.0000000032570762, w: 0.98712754}
+  m_LocalRotation: {x: 0.15993518, y: 0.000000044537238, z: -0.0000000072159576, w: 0.98712754}
   m_LocalPosition: {x: 4.106, y: 0.9480337, z: -0.75271904}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1045,6 +1045,8 @@ MonoBehaviour:
   obstaclePrefab: {fileID: 1335636410841065698, guid: 85c6d93fffd38a544b2857b90d8c6d4c, type: 3}
   bounds1: {fileID: 1894363969}
   bounds2: {fileID: 375834566}
+  startNode: {fileID: 9736662}
+  targetNode: {fileID: 1447495428}
   obstacleCount: 10
   gridWidth: 0
   gridHeight: 0
@@ -1075,7 +1077,7 @@ Transform:
   m_GameObject: {fileID: 1447495427}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.71, y: 0.101, z: 3.09}
+  m_LocalPosition: {x: 0.913, y: 0.364, z: 3.09}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -41101,7 +41103,6 @@ Transform:
   - {fileID: 3187724473910411216}
   - {fileID: 6486145994944041147}
   - {fileID: 1862327464856286962}
-  - {fileID: 9736662}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &3161142658214053639
@@ -41119,7 +41120,8 @@ MonoBehaviour:
   pathfinding: {fileID: 1447495429}
   start: {fileID: 9736662}
   target: {fileID: 1447495428}
-  speed: 0.5
+  moveSpeed: 1
+  turnSpeed: 3
 --- !u!135 &3161142658214053640
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -117183,6 +117185,7 @@ SceneRoots:
   - {fileID: 705507995}
   - {fileID: 808059177}
   - {fileID: 3161142658214053638}
+  - {fileID: 9736662}
   - {fileID: 1447495428}
   - {fileID: 1894363969}
   - {fileID: 375834566}

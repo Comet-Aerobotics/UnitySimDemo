@@ -8,7 +8,8 @@ public class RoverMovement : MonoBehaviour
     public AStarPathfinding pathfinding;
     public Transform start;
     public Transform target;
-    public float speed;
+    public float moveSpeed;
+    public float turnSpeed;
 
     private List<Node> path;
     private int currentPathIndex;
@@ -39,30 +40,22 @@ public class RoverMovement : MonoBehaviour
         while (currentPathIndex < path.Count)
         {
             Node currentNode = path[currentPathIndex];
-            Vector3 targetPosition = new Vector3(currentNode.X, 0, currentNode.Z);
-            float distance = Vector3.Distance(transform.position, targetPosition);
-
-            while (distance > 0.1f)
+            Vector3 targetPosition = new Vector3(currentNode.X, transform.position.y, currentNode.Z);
+            
+            while (Vector3.Angle(transform.forward, targetPosition - transform.position) > 1f)
             {
-                // Rotate to face the target node and move towards it
                 Vector3 direction = (targetPosition - transform.position).normalized;
-                Quaternion lookRotation = Quaternion.LookRotation(direction);
-                // Rotate to face the target node
-                while (Quaternion.Angle(transform.rotation, lookRotation) > 10f)
-                {
-                    transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, speed * Time.deltaTime);
-                    yield return null;
-                }
-
-                // Move towards the target node
-                while (distance > 0.1f)
-                {
-                    transform.Translate(transform.forward * speed * Time.deltaTime, Space.World);
-                    distance = Vector3.Distance(transform.position, targetPosition);
-                    yield return null;
-                }
+                float angle = Vector3.SignedAngle(transform.forward, direction, Vector3.up);
+                transform.Rotate(Vector3.up, angle * Time.deltaTime * turnSpeed);
                 yield return null;
             }
+
+            while (Vector3.Distance(transform.position, targetPosition) > 0.1f)
+            {
+                transform.position = Vector3.MoveTowards(transform.position, targetPosition, moveSpeed * Time.deltaTime);
+                yield return null;
+            }
+
             currentPathIndex++;
         }
 
