@@ -60,26 +60,30 @@ public class AStarPathfinding : MonoBehaviour
     {
         List<Node> neighbors = new List<Node>();
 
-        int nodeX = Mathf.RoundToInt(node.X - gridManager.bounds1.position.x);
-        int nodeZ = Mathf.RoundToInt(node.Z - gridManager.bounds1.position.z);
-
-        for (int x = -1; x <= 1; x++)
+        for (int col = -1; col <= 1; col++)
         {
-            for (int z = -1; z <= 1; z++)
+            for (int row = -1; row <= 1; row++)
             {
-                if (x == 0 && z == 0) continue; // Skip the center node (itself)
+                if (col == 0 && row == 0) continue; // Skip the center node (itself)
 
-                int neighborX = nodeX + x;
-                int neighborZ = nodeZ + z;
+                int neighborCol = node.Col + col;
+                int neighborRow = node.Row + row;
+                float neighborX = gridManager.GetNodeCoords(node)[0];
+                float neighborZ = gridManager.GetNodeCoords(node)[1];
 
                 // Ensure the neighbor is within grid bounds
-                if (neighborX >= gridManager.bounds1.position.x && neighborZ >= gridManager.bounds1.position.z && 
+                if (neighborX >= gridManager.bounds1.position.x && 
+                    neighborZ >= gridManager.bounds1.position.z && 
                     neighborX < gridManager.bounds2.position.x && 
-                    neighborZ < gridManager.bounds2.position.z){
-                        Node neighbor = gridManager.GetNode(node.X + x, node.Z + z);
+                    neighborZ < gridManager.bounds2.position.z)
+                    {
+                        Node neighbor = gridManager.GetNode(neighborCol, neighborRow);
                         if (neighbor != null)
+                        {
                             neighbors.Add(neighbor);
+                        }
                     }
+                
             }
         }
 
@@ -90,8 +94,12 @@ public class AStarPathfinding : MonoBehaviour
 
     float GetDistance(Node a, Node b)
     {
-        int dstX = (int) Mathf.Abs(a.X - b.X);
-        int dstz = (int) Mathf.Abs(a.Z - b.Z);
+        float aX = gridManager.GetNodeCoords(a)[0];
+        float aZ = gridManager.GetNodeCoords(a)[1];
+        float bX = gridManager.GetNodeCoords(b)[0];
+        float bZ = gridManager.GetNodeCoords(b)[1];
+        int dstX = (int) Mathf.Abs(aX - bX);
+        int dstz = (int) Mathf.Abs(aZ - bZ);
         return dstX + dstz;
     }
 

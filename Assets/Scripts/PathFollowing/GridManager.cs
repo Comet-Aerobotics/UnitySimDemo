@@ -34,13 +34,16 @@ public class GridManager : MonoBehaviour
         grid = new Node[gridWidth, gridHeight];
         gridSquare.transform.localScale = new Vector3(cellSize, 0.00001f, cellSize);
         gridSquare.GetComponent<Collider>().enabled = false;
-        for (int x = Mathf.RoundToInt(bounds1.position.x); x < Mathf.RoundToInt(bounds2.position.x); x++)
+        for (int col = 0; col < gridWidth; col++)
         {
-            for (int z = Mathf.RoundToInt(bounds1.position.z); z < Mathf.RoundToInt(bounds2.position.z); z++)
+            for (int row = 0; row < gridHeight; row++)
             {
-                grid[x, z] = new Node(x, z, true);
+                float x = col*cellSize;
+                float z = row*cellSize;
+                grid[col, row] = new Node(col, row, true);
+                Debug.Log(col + " | " + row);
                 Instantiate(gridSquare, new Vector3(x + cellSize/2, 0.1f, z + cellSize/2), Quaternion.identity);
-                if (grid[x, z] == null) {
+                if (grid[col, row] == null) {
                     Debug.LogError($"Node at ({x}, {z}) is NULL!");
                 }
             }
@@ -58,22 +61,27 @@ public class GridManager : MonoBehaviour
                 x = UnityEngine.Random.Range(Mathf.RoundToInt(bounds1.position.x), Mathf.RoundToInt(bounds2.position.x));
                 z = UnityEngine.Random.Range(Mathf.RoundToInt(bounds1.position.z), Mathf.RoundToInt(bounds2.position.z));
             }
-            grid[x, z].IsWalkable = false;
+            GetNode(x, z).IsWalkable = false;
             Instantiate(obstaclePrefab, new Vector3(x + cellSize/2, 0.1f, z + cellSize/2), Quaternion.identity);
         }
     }
 
-    public Node GetNode(float worldX, float worldZ)
+    public float[] GetNodeCoords(Node node)
     {
-        int x = Mathf.RoundToInt(worldX - bounds1.position.x);
-        int z = Mathf.RoundToInt(worldZ - bounds1.position.z);
-        if (x < bounds1.position.x || z < bounds1.position.z || x >= bounds2.position.x || z >= bounds2.position.x)
+        return new float[] { node.Col * cellSize, node.Row * cellSize};
+    }
+
+    public Node GetNode(float nodeX, float nodeZ)
+    {
+        int col = Mathf.RoundToInt(nodeX / cellSize);
+        int row = Mathf.RoundToInt(nodeZ / cellSize);
+        if (nodeX < bounds1.position.x || nodeZ < bounds1.position.z || nodeX >= bounds2.position.x || nodeZ >= bounds2.position.x)
         {
-            Debug.LogError($"GetNode({x}, {z}) is out of bounds!");
+            Debug.LogError($"GetNode({col}, {row}) is out of bounds!");
             return null;
         }
 
-        return grid[x, z];
+        return grid[col, row];
     }
 
 }

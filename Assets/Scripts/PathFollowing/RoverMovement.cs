@@ -6,6 +6,8 @@ using UnityEngine;
 public class RoverMovement : MonoBehaviour
 {
     public AStarPathfinding pathfinding;
+    [HideInInspector]
+    public GridManager gridManager;
     public Transform start;
     public Transform target;
     public float moveSpeed;
@@ -15,6 +17,7 @@ public class RoverMovement : MonoBehaviour
     private int currentPathIndex;
     IEnumerator Start()
     {
+        gridManager = pathfinding.gridManager;
         Cursor.lockState = CursorLockMode.Locked;
 
         yield return new WaitForSeconds(0.1f);
@@ -40,7 +43,7 @@ public class RoverMovement : MonoBehaviour
         while (currentPathIndex < path.Count)
         {
             Node currentNode = path[currentPathIndex];
-            Vector3 targetPosition = new Vector3(currentNode.X, transform.position.y, currentNode.Z);
+            Vector3 targetPosition = new Vector3(gridManager.GetNodeCoords(currentNode)[0], transform.position.y, gridManager.GetNodeCoords(currentNode)[1]);
             
             while (Vector3.Angle(transform.forward, targetPosition - transform.position) > 1f)
             {

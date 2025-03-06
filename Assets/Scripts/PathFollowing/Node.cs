@@ -4,19 +4,20 @@ using UnityEngine;
 
 public class Node
 {
-    public float X;
-    public float Z;
+    public int Col;
+    public int Row;
     public bool IsWalkable;
     public Node Parent;
 
     public float GCost;
     public float HCost;
     public float FCost => GCost + HCost;
+    public float cellSize;
 
-    public Node(float x, float z, bool isWalkable)
+    public Node(int col, int row, bool isWalkable)
     {
-        X = x;
-        Z = z;
+        Col = col;
+        Row = row;
         IsWalkable = isWalkable;
     }
 }
