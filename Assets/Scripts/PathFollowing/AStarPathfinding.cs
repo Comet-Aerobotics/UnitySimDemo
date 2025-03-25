@@ -68,16 +68,14 @@ public class AStarPathfinding : MonoBehaviour
 
                 int neighborCol = node.Col + col;
                 int neighborRow = node.Row + row;
-                float neighborX = gridManager.GetNodeCoords(node)[0];
-                float neighborZ = gridManager.GetNodeCoords(node)[1];
 
                 // Ensure the neighbor is within grid bounds
-                if (neighborX >= gridManager.bounds1.position.x && 
-                    neighborZ >= gridManager.bounds1.position.z && 
-                    neighborX < gridManager.bounds2.position.x && 
-                    neighborZ < gridManager.bounds2.position.z)
+                if (neighborCol >= 0 && 
+                    neighborRow >= 0 && 
+                    neighborCol < gridManager.gridWidth && 
+                    neighborRow < gridManager.gridHeight)
                     {
-                        Node neighbor = gridManager.GetNode(neighborCol, neighborRow);
+                        Node neighbor = gridManager.GetNodeFromGrid(neighborCol, neighborRow);
                         if (neighbor != null)
                         {
                             neighbors.Add(neighbor);

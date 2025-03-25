@@ -972,6 +972,37 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 100
   turnSpeed: 100
+--- !u!1 &1201310191
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1201310192}
+  m_Layer: 0
+  m_Name: RobotBounds1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1201310192
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1201310191}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.369, y: 0, z: -0.409}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3161142658214053638}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1301312602 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4161764451575295506, guid: 5ae579ee3b66b9c40ad28c1ba591e3e8, type: 3}
@@ -995,10 +1026,42 @@ MonoBehaviour:
   bounds2: {fileID: 375834566}
   startNode: {fileID: 9736662}
   targetNode: {fileID: 1447495428}
+  robotPerimeter: 0
   obstacleCount: 10
   gridWidth: 0
   gridHeight: 0
   gridSquare: {fileID: 5921385320001173867, guid: 48e36f51e781560409f4e0bb7aa1f8a1, type: 3}
+--- !u!1 &1433023426
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1433023427}
+  m_Layer: 0
+  m_Name: RobotBounds2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1433023427
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1433023426}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.351, y: 0, z: 0.358}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3161142658214053638}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1447495427
 GameObject:
   m_ObjectHideFlags: 0
@@ -1025,7 +1088,7 @@ Transform:
   m_GameObject: {fileID: 1447495427}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.515, y: 0.364, z: 2.73}
+  m_LocalPosition: {x: 2.57, y: 0.364, z: 2.73}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -40999,6 +41062,8 @@ Transform:
   - {fileID: 3187724473910411216}
   - {fileID: 6486145994944041147}
   - {fileID: 1862327464856286962}
+  - {fileID: 1201310192}
+  - {fileID: 1433023427}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &3161142658214053639
